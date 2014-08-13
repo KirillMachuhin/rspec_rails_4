@@ -24,7 +24,7 @@ describe Contact do
   end
 
   it "returns a contact's full name as a string" do
-    contact = build(:contact)
+    contact = create(:contact, firstname: 'John', lastname: 'Doe')
     expect(contact.name).to eq("John Doe")
   end
 
@@ -37,8 +37,11 @@ describe Contact do
 
   it "is return list according to incoming data" do
     huston = create(:contact, lastname: 'Huston')
-
     expect(Contact.by_letter("J")).to_not include huston
+  end
+
+  it "has three phone numbers" do
+    expect(create(:contact).phones.count).to eq 3
   end
 
 end
